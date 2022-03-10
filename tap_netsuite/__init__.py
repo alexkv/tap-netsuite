@@ -13,22 +13,8 @@ from tap_netsuite.sync import (sync_stream, get_stream_version)
 LOGGER = singer.get_logger()
 
 REQUIRED_CONFIG_KEYS = [
-    'ns_account',
-    'ns_consumer_key',
-    'ns_consumer_secret',
-    'ns_token_key',
-    'ns_token_secret',
     'select_fields_by_default'
 ]
-
-CONFIG = {
-    'ns_account': None,
-    'ns_consumer_key': None,
-    'ns_consumer_secret': None,
-    'ns_token_key': None,
-    'ns_token_secret': None,
-    'start_date': None
-}
 
 REPLICATION_KEY = ["lastModifiedDate", "LastModifiedDate", "LastModDate"]
 
