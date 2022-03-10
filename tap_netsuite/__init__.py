@@ -275,6 +275,10 @@ def main_impl():
             catalog = args.properties
             state = build_state(args.state, catalog)
             do_sync(ns, catalog, state)
+        elif args.catalog:
+            catalog = args.catalog
+            state = build_state(args.state, catalog)
+            do_sync(ns, catalog, state)
     finally:
         if ns:
             ns = None
