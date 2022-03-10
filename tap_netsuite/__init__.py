@@ -276,7 +276,7 @@ def main_impl():
             state = build_state(args.state, catalog)
             do_sync(ns, catalog, state)
         elif args.catalog:
-            catalog = args.catalog
+            catalog = args.catalog.to_dict()
             state = build_state(args.state, catalog)
             do_sync(ns, catalog, state)
     finally:
