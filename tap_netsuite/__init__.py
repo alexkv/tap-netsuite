@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import json
 import sys
 import singer
@@ -252,20 +253,20 @@ def do_discover(ns):
 
 def main_impl():
     args = singer_utils.parse_args(REQUIRED_CONFIG_KEYS)
+    config = args.config
 
-    CONFIG.update(args.config)
-    LOGGER.debug(f"NetSuite CONFIG IS {json.dumps(CONFIG)}")
+    LOGGER.debug(f"NetSuite CONFIG IS {json.dumps(config)}")
 
     ns = None
     try:
-        ns = NetSuite(ns_account=CONFIG.get('ns_account'),
-                      ns_consumer_key=CONFIG.get('ns_consumer_key'),
-                      ns_consumer_secret=CONFIG.get('ns_consumer_secret'),
-                      ns_token_key=CONFIG.get('ns_token_key'),
-                      ns_token_secret=CONFIG.get('ns_token_secret'),
-                      is_sandbox=CONFIG.get('is_sandbox'),
-                      default_start_date=CONFIG.get('start_date'),
-                      select_fields_by_default=CONFIG.get('select_fields_by_default'), )
+        ns = NetSuite(ns_account=config.get('ns_account') or os.environ.get('TAP_NETSUITE_ACCOUNT'),
+                      ns_consumer_key=config.get('ns_consumer_key') or os.environ.get('TAP_NETSUITE_CONSUMER_KEY'),
+                      ns_consumer_secret=config.get('ns_consumer_secret') or os.environ.get('TAP_NETSUITE_CONSUMER_SECRET'),
+                      ns_token_key=config.get('ns_token_key') or os.environ.get('TAP_NETSUITE_TOKEN_KEY'),
+                      ns_token_secret=config.get('ns_token_secret') or os.environ.get('TAP_NETSUITE_TOKEN_SECRET'),
+                      is_sandbox=config.get('is_sandbox'),
+                      default_start_date=config.get('start_date'),
+                      select_fields_by_default=config.get('select_fields_by_default'), )
 
         ns.connect_tba()
 
