@@ -16,7 +16,7 @@ setup(
         'singer-python==5.3.1',
         'xmltodict==0.11.0',
         'jsonpath-ng==1.4.3',
-        'jsonschema==2.6.0',
+        'jsonschema>=3.0.0',
         'pytz==2018.4'
     ],
     entry_points='''
