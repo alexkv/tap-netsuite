@@ -12,7 +12,7 @@ setup(
     py_modules=['tap_netsuite'],
     install_requires=[
         'netsuitesdk==2.7.4', # USING THE HOTGLUE VERSION
-        'requests==2.21.0',
+        'requests==2.27.1',
         'singer-python==5.3.1',
         'xmltodict==0.11.0',
         'jsonpath-ng==1.4.3',
